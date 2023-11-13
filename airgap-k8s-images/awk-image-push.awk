@@ -5,3 +5,4 @@ $0 ~ /^quay\.io/ {printf("%s push ", docker_podman); sub("quay.io", local_image_
 $0 ~ /^docker\.elastic\.co/ {printf("%s push ", docker_podman); sub("docker.elastic.co", local_image_registry, $0); print} 
 $0 ~ /^registry\.opensource\.zalan\.do/ {printf("%s push ", docker_podman); sub("registry.opensource.zalan.do", local_image_registry, $0); print} 
 $0 ~ /^ghcr\.io/ {printf("%s push ", docker_podman); sub("ghcr.io", local_image_registry, $0); print} 
+$0 == "registry.access.redhat.com/ubi8/ubi-minimal:8.8-1014" {printf("%s push ", docker_podman); sub("registry.access.redhat.com", local_image_registry, $0); sub("8.8-1014", "latest", $0); print}
