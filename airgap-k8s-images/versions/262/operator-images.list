@@ -1,0 +1,22 @@
+# Zookeeper
+docker.io/pravega/zookeeper-operator:0.2.15
+docker.io/pravega/zookeeper:0.2.14
+# Kafka
+quay.io/strimzi/operator:0.36.0
+quay.io/strimzi/kafka:0.36.0-kafka-3.4.0
+# Elasticsearch
+docker.elastic.co/eck/eck-operator:2.8.0
+docker.elastic.co/elasticsearch/elasticsearch:7.17.12
+# Postgres
+registry.opensource.zalan.do/acid/postgres-operator:v1.10.0
+ghcr.io/zalando/spilo-15:3.0-p1
+# Cassandra
+docker.io/k8ssandra/cass-operator:v1.16.0
+docker.io/k8ssandra/cass-management-api:4.0.7
+docker.io/k8ssandra/system-logger:v1.16.0
+docker.io/datastax/cass-config-builder:1.0-ubi7
+# Clickhouse
+docker.io/altinity/clickhouse-operator:0.21.2
+docker.io/altinity/metrics-exporter:0.21.2
+registry.access.redhat.com/ubi8/ubi-minimal:8.8-1014
+artifact-public.instana.io/self-hosted-images/k8s/clickhouse:23.3.10.5-1-lts-ibm_v0.29.0
