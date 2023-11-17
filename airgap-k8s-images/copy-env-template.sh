@@ -35,8 +35,8 @@ cat <<EOF > "$outdir/operator-images.list"
 # search for "The following images are needed for the pinned Helm chart versions of this document"
 EOF
 
-if test -f ./versions/$version/operator-images.list; then
-  cat ./versions/$version/operator-images.list >> "$outdir/operator-images.list"
+if test -f ./versions/$version-operator-images.list; then
+  cat ./versions/$version-operator-images.list >> "$outdir/operator-images.list"
 fi
 
 if test -f $outdir/kubectl-instana; then
