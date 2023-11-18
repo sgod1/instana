@@ -30,4 +30,4 @@ then
    exit 1
 fi
 
-$docker_podman login $image_registry --username $username --passsword $password
+$docker_podman login $image_registry -u "$username" -p "$password"

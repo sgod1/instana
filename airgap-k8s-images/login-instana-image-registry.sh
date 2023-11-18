@@ -12,4 +12,4 @@ then
    exit 1
 fi
 
-$docker_podman login $instana_image_registry --username _ --passsword $download_key
+$docker_podman login $instana_image_registry -u "_" -p "$download_key"
