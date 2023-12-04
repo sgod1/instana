@@ -1,0 +1,34 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: postgres
+spec:
+  patroni:
+    pg_hba:
+      - local     all          all                            trust
+      - host      all          all          0.0.0.0/0         md5
+      - local     replication  standby                        trust
+      - hostssl   replication  standby      all               md5
+      - hostnossl all          all          all               reject
+      - hostssl   all          all          all               md5
+  dockerImage: ghcr.io/zalando/spilo-15:3.0-p1
+  teamId: instana
+  numberOfInstances: 3
+  spiloRunAsUser: 101
+  spiloFSGroup: 103
+  spiloRunAsGroup: 103
+  postgresql:
+    version: "15"
+    parameters:  # Expert section
+      shared_buffers: "32MB"
+  volume:
+    size: 10Gi
+    # Uncomment the line below to specify your own storage class, otherwise use the default.
+    # storageClass: <REPLACE>
+  resources:
+    requests:
+      cpu: 500m
+      memory: 2Gi
+    limits:
+      cpu: 1000m
+      memory: 4Gi

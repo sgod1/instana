@@ -1,0 +1,5 @@
+image:
+  registry: artifact-public.instana.io
+
+imagePullSecrets:
+  - name: instana-registry

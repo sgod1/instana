@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+patches:
+  - path: clickhouse-zookeeper-host-patch.yaml
+    target:
+      kind: ClickHouseInstallation
+      name: instana
+#  - path: clickhouse-image-secret-patch.yaml
+#    target:
+#      kind: ClickHouseInstallation
+#      name: instana
+  - path: clickhouse-users-patch.yaml
+    target:
+      kind: ClickHouseInstallation
+      name: instana
+  - path: clickhouse-scc-patch.yaml
+    target:
+      kind: SecurityContextConstraints
+      name: clickhouse-scc
+
+bases:
+  - ../base
