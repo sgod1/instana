@@ -3,12 +3,12 @@
 defaultenv=`readlink -f $1`
 versionenv=`readlink -f $2`
 customenv=`readlink -f $3`
+outdir=`readlink -f $4`
 
 . $defaultenv
 . $versionenv
 . $customenv
 
-outdir=$ENVROOT/instana/instana-core
 mkdir -p $outdir
 
 # generate ca private key

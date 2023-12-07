@@ -16,3 +16,5 @@ INSTALLDIR=$basedir/$version
 if test ! -f $ENVROOT/bin/kubectl-instana; then
   ./download-kubectl-instana.sh "$INSTALLDIR/default.env" "$INSTALLDIR/operator-versions.env" "$INSTALLDIR/custom.env"
 fi
+
+# create instana registry pull secret yaml

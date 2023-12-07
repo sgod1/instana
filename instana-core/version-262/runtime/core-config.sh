@@ -13,13 +13,13 @@ outdir=`readlink -f $4`
 cat <<EOF > $outdir/core-config.yaml
 # Diffie-Hellman parameters to use
 dhParams: |
-`sed  's/^/  /' dhparams.pem`
+`sed  's/^/  /' $outdir/dhparams.pem`
 # The download key you received from us
-repositoryPassword: ${DOWNLOAD_KEY}
+repositoryPassword: ${INSTANA_DOWNLOAD_KEY}
 # The sales key you received from us
-salesKey: ${SALES_KEY}
+salesKey: ${INSTANA_SALES_KEY}
 # Seed for creating crypto tokens. Pick a random 12 char string
-tokenSecret: ${TOKEN_SECRET}
+tokenSecret: ${INSTANA_CORE_TOKEN_SECRET}
 # Configuration for raw spans storage
 storageConfigs:
 #  rawSpans:
@@ -37,10 +37,10 @@ storageConfigs:
 # SAML/OIDC configuration
 serviceProviderConfig:
   # Password for the key/cert file
-  keyPassword: ${KEY_PEM_PASSWORD}
+  keyPassword: ${INSTANA_CORE_PEM_KEY_PASSWORD}
   # The combined key/cert file
   pem: |
-`sed  's/^/    /' sp.pem`
+`sed  's/^/    /' $outdir/sp.pem`
 # # Required if a proxy is configured that needs authentication
 # proxyConfig:
 #   # Proxy user
@@ -75,24 +75,24 @@ datastoreConfigs:
       password: "${CLICKHOUSE_USER_PASS}"
   cassandraConfigs:
     - adminUser: instana-superuser
-      adminPassword: "`${KUBECTL} get secret instana-superuser -n instana-cassandra --template='{{index .data.password | base64decode}}'`"
+      adminPassword: "`${KUBECTL} get secret instana-superuser -n $CASSANDRA_NAMESPACE --template='{{index .data.password | base64decode}}'`"
       user: instana-superuser
-      password: "`${KUBECTL} get secret instana-superuser -n instana-cassandra --template='{{index .data.password | base64decode}}'`"
+      password: "`${KUBECTL} get secret instana-superuser -n $CASSANDRA_NAMESPACE --template='{{index .data.password | base64decode}}'`"
   postgresConfigs:
     - adminUser: postgres
-      adminPassword: "`${KUBECTL} get secret postgres.postgres.credentials.postgresql.acid.zalan.do -n instana-postgres --template='{{index .data.password | base64decode}}'`"
+      adminPassword: "`${KUBECTL} get secret postgres.postgres.credentials.postgresql.acid.zalan.do -n $POSTGRES_NAMESPACE --template='{{index .data.password | base64decode}}'`"
       user: postgres
-      password: "`${KUBECTL} get secret postgres.postgres.credentials.postgresql.acid.zalan.do -n instana-postgres --template='{{index .data.password | base64decode}}'`"
+      password: "`${KUBECTL} get secret postgres.postgres.credentials.postgresql.acid.zalan.do -n POSTGRES_NAMESPACE --template='{{index .data.password | base64decode}}'`"
   elasticsearchConfig:
     adminUser: elastic
-    adminPassword: "`${KUBECTL} get secret instana-es-elastic-user -n instana-elastic -o go-template='{{.data.elastic | base64decode}}'`"
+    adminPassword: "`${KUBECTL} get secret instana-es-elastic-user -n $ELASTIC_NAMESPACE -o go-template='{{.data.elastic | base64decode}}'`"
     user: elastic
-    password: "`${KUBECTL} get secret instana-es-elastic-user -n instana-elastic -o go-template='{{.data.elastic | base64decode}}'`"
+    password: "`${KUBECTL} get secret instana-es-elastic-user -n $ELASTIC_NAMESPACE -o go-template='{{.data.elastic | base64decode}}'`"
   kafkaConfig:
     adminUser: strimzi-kafka-user
-    adminPassword: "`${KUBECTL} get secret strimzi-kafka-user  -n instana-kafka --template='{{index .data.password | base64decode}}'`"
+    adminPassword: "`${KUBECTL} get secret strimzi-kafka-user  -n $KAFKA_NAMESPACE --template='{{index .data.password | base64decode}}'`"
     consumerUser: strimzi-kafka-user
-    consumerPassword: "`${KUBECTL} get secret strimzi-kafka-user  -n instana-kafka --template='{{index .data.password | base64decode}}'`"
+    consumerPassword: "`${KUBECTL} get secret strimzi-kafka-user  -n $KAFKA_NAMESPACE --template='{{index .data.password | base64decode}}'`"
     producerUser: strimzi-kafka-user
-    producerPassword: "`${KUBECTL} get secret strimzi-kafka-user  -n instana-kafka --template='{{index .data.password | base64decode}}'`"
+    producerPassword: "`${KUBECTL} get secret strimzi-kafka-user  -n $KAFKA_NAMESPACE --template='{{index .data.password | base64decode}}'`"
 EOF

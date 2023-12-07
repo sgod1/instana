@@ -3,9 +3,10 @@
 #### bootstrap installation version.
 Run: `bootstrap-install-version.sh 262 ~/tmp2`
 
-Edit `custom.env` if needed.<br/>
+Edit `custom.env` as needed.<br/>
 
-Run: `1-apply-environment.sh`<br/>
+Run: `1-update-environment.sh`<br/>
+
 
 #### todo
 Configure your image registry to proxy Instana's image registry (containers.instana.io) transparently.<br/>

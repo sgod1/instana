@@ -17,3 +17,8 @@ version="version-$INSTANA_VERSION"
 versiondir=$gitdir/$version
 
 echo apply instana unit...
+
+${KUBECTL} create secret generic instana-core --namespace instana-core --from-file=config.yaml=core-config.yaml
+
+${KUBECTL} create secret generic ${INSTANA_TENANT_NAME}-${INSTANA_UNIT_NAME} --namespace instana-units \
+  --from-file=config.yaml=unit-config.yaml

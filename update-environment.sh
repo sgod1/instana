@@ -33,5 +33,8 @@ $GITROOT/kustomize-builder.sh $outdir/datastores/$datastore $defaultenv $version
 $GITROOT/instana-operator/kustomize-builder.sh $outdir/instana/instana-operator $defaultenv $versionenv $customenv $GITROOT/instana-operator $overlay
 
 # instana-core
+component="instana-core"
+$GITROOT/kustomize-builder.sh $outdir/instana/$component $defaultenv $versionenv $customenv $GITROOT/$component $overlay
 
 # instana-unit
+component="instana-unit"

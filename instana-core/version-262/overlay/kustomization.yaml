@@ -1,5 +1,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+patches:
+  - path: instana-base-domain-patch.yaml
+    target:
+      kind: Core
+      name: instana-core
+  - path: instana-agent-acceptor-patch.yaml
+    target:
+      kind: Core
+      name: instana-core
+
 bases:
   - ../base
