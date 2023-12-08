@@ -1,24 +1,25 @@
 #!/bin/bash
 
-outdir=`readlink -f $1`
-
-defaultenv=`readlink -f $2`
-versionenv=`readlink -f $3`
-customenv=`readlink -f $4`
-
-gitdir=`readlink -f $5`
+defaultenv=`readlink -f $1`
+versionenv=`readlink -f $2`
+customenv=`readlink -f $3`
 
 . $defaultenv
 . $versionenv
-if test -f $customenv; then . $customenv; fi
+. $customenv
 
 version="version-$INSTANA_VERSION"
 
-versiondir=$gitdir/$version
+versiondir=$GITROOT/$version
+outdir=$ENVROOT/instana/instana-units
 
 echo apply instana unit...
 
-${KUBECTL} create secret generic instana-core --namespace instana-core --from-file=config.yaml=core-config.yaml
+# create unit-config.yaml
+$GITROOT/instana-units/unit-config.sh $defaultenv $versionenv $customenv $outdir
 
-${KUBECTL} create secret generic ${INSTANA_TENANT_NAME}-${INSTANA_UNIT_NAME} --namespace instana-units \
-  --from-file=config.yaml=unit-config.yaml
+$KUBECTL delete secret $INSTANA_TENANT_NAME-$INSTANA_UNIT_NAME --namespace $INSTANA_UNIT_NAMESPACE
+$KUBECTL create secret generic $INSTANA_TENANT_NAME-$INSTANA_UNIT_NAME --namespace $INSTANA_UNIT_NAMESPACE --from-file=config.yaml=$outdir/unit-config.yaml
+
+# apply unit.yaml
+$KUBECTL apply -f $outdir/instana.io_v1beta2_unit_$INSTANA_TENANT_NAME-$INSTANA_UNIT_NAME.yaml -n $INSTANA_UNIT_NAMESPACE

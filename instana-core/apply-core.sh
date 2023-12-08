@@ -20,12 +20,8 @@ if test ! -f $outdir/dhparams.pem; then
   openssl dhparam -out $outdir/dhparams.pem 2048
 fi
 
-# create ingress cert
-$GITROOT/instana-core/core-create-ingress-cert.sh $defaultenv $versionenv $customenv $outdir
-
-# create tls ingress secret from ingres cert
-$KUBECTL create secret tls instana-tls --namespace $INSTANA_CORE_NAMESPACE --cert=$outdir/tls.crt --key=$outdir/tls.key --dry-run=client -o yaml > $outdir/instana-tls.yaml
-$KUBECTL apply -f $outdir/instana-tls.yaml
+# create base domain tls secret
+$GITROOT/instana-core/create-base-domain-tls-secret.sh $defaultenv $versionenv $customenv
 
 # create self-signed service-provider cert
 $GITROOT/instana-core/core-create-internal-ss-cert.sh $defaultenv $versionenv $customenv $outdir

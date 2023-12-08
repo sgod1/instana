@@ -37,4 +37,5 @@ component="instana-core"
 $GITROOT/kustomize-builder.sh $outdir/instana/$component $defaultenv $versionenv $customenv $GITROOT/$component $overlay
 
 # instana-unit
-component="instana-unit"
+component="instana-units"
+$GITROOT/kustomize-builder.sh $outdir/instana/$component $defaultenv $versionenv $customenv $GITROOT/$component $overlay

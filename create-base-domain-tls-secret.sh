@@ -8,4 +8,4 @@ customenv=`readlink -f ./custom.env`
 . $versionenv
 . $customenv
 
-$GITROOT/instana-core/apply-core.sh $defaultenv $versionenv $customenv
+$GITROOT/instana-core/create-base-domain-tls-secret.sh $defaultenv $versionenv $customenv

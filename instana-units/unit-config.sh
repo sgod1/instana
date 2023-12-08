@@ -1,4 +1,15 @@
-cat > unit-config.yaml <<-EOF
+#!/bin/bash
+
+defaultenv=`readlink -f $1`
+versionenv=`readlink -f $2`
+customenv=`readlink -f $3`
+outdir=`readlink -f $4`
+
+. $defaultenv
+. $versionenv
+. $customenv
+
+cat <<EOF > $outdir/unit-config.yaml
 # The initial user of this tenant unit with admin role, default admin@instana.local.
 # Must be a valid e-maiol address.
 # NOTE:
@@ -14,9 +25,9 @@ initialAdminPassword: ${INSTANA_ADMIN_PASSWORD}
 # license: mylicensestring # This would also work: '["mylicensestring"]'
 # A list of Instana licenses. Multiple licenses may be specified.
 # licenses: [ "license1", "license2" ]
-licenses: `cat license.json`
+licenses: `cat $ENVROOT/instana/license.json`
 # A list of agent keys. Specifying multiple agent keys enables gradually rotating agent keys.
 agentKeys:
-  - ${DOWNLOAD_KEY}
-downloadKey: ${DOWNLOAD_KEY}
+  - ${INSTANA_DOWNLOAD_KEY}
+downloadKey: ${INSTANA_DOWNLOAD_KEY}
 EOF
