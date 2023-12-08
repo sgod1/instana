@@ -7,7 +7,7 @@ outdir=`readlink -f $4`
 
 . $defaultenv
 . $versionenv
-if test -f $customenv; then . $customenv; fi
+. $customenv
 
 cat <<EOF > $outdir/clickhouse-users-patch.yaml
 apiVersion: "clickhouse.altinity.com/v1"
@@ -17,6 +17,6 @@ metadata:
 spec:
   configuration:
     users:
-      default/password: ${CLICKHOUSE_DEFAULT_PASSWORD}
-      clickhouse-user/password: ${CLICKHOUSE_USER_PASSWORD}
+      ${CLICKHOUSE_ADMIN}/password: ${CLICKHOUSE_ADMIN_PASSWORD}
+      ${CLICKHOUSE_USER}/password: ${CLICKHOUSE_USER_PASSWORD}
 EOF

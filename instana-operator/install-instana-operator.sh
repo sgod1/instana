@@ -8,12 +8,8 @@ customenv=`readlink -f $3`
 . $versionenv
 . $customenv
 
-# create instana registry key secret
-oc create secret docker-registry instana-registry \
-    --namespace=$namespace \
-    --docker-username=_ \
-    --docker-password=$INSTANA_DOWNLOAD_KEY \
-    --docker-server=artifact-public.instana.io
+# create instana registry secret
+$KUBECTL apply -f $ENVROOT/instana/instana-registry.yaml -n $INSTANA_OPERATOR_NAMESPACE
 
 # install instana operator
 $ENVROOT/bin/kubectl-instana operator apply --values $ENVROOT/instana/instana-operator/values.yaml -n $INSTANA_OPERATOR_NAMESPACE

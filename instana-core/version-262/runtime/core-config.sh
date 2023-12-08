@@ -70,9 +70,9 @@ datastoreConfigs:
     password: "${BEEINSTANA_ADMIN_PASS}"
   clickhouseConfigs:
     - adminUser: "${CLICKHOUSE_USER}"
-      adminPassword: "${CLICKHOUSE_USER_PASS}"
+      adminPassword: "${CLICKHOUSE_USER_PASSWORD}"
       user: "${CLICKHOUSE_USER}"
-      password: "${CLICKHOUSE_USER_PASS}"
+      password: "${CLICKHOUSE_USER_PASSWORD}"
   cassandraConfigs:
     - adminUser: instana-superuser
       adminPassword: "`${KUBECTL} get secret instana-superuser -n $CASSANDRA_NAMESPACE --template='{{index .data.password | base64decode}}'`"
@@ -82,7 +82,7 @@ datastoreConfigs:
     - adminUser: postgres
       adminPassword: "`${KUBECTL} get secret postgres.postgres.credentials.postgresql.acid.zalan.do -n $POSTGRES_NAMESPACE --template='{{index .data.password | base64decode}}'`"
       user: postgres
-      password: "`${KUBECTL} get secret postgres.postgres.credentials.postgresql.acid.zalan.do -n POSTGRES_NAMESPACE --template='{{index .data.password | base64decode}}'`"
+      password: "`${KUBECTL} get secret postgres.postgres.credentials.postgresql.acid.zalan.do -n $POSTGRES_NAMESPACE --template='{{index .data.password | base64decode}}'`"
   elasticsearchConfig:
     adminUser: elastic
     adminPassword: "`${KUBECTL} get secret instana-es-elastic-user -n $ELASTIC_NAMESPACE -o go-template='{{.data.elastic | base64decode}}'`"

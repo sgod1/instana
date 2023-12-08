@@ -26,9 +26,6 @@ fi
 
 mkdir -p $outdir/bin
 
-mkdir -p $outdir/certs/ca
-mkdir -p $outdir/certs/cn
-
 mkdir -p $outdir/instana/instana-operator
 mkdir -p $outdir/instana/instana-core
 mkdir -p $outdir/instana/instana-units

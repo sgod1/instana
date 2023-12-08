@@ -10,6 +10,14 @@ patches:
     target:
       kind: Core
       name: instana-core
+  - path: clickhouse-configs-patch.yaml
+    target:
+      kind: Core
+      name: instana-core
+  - path: storage-configs-storage-class-patch.yaml
+    target:
+      kind: Core
+      name: instana-core
 
 bases:
   - ../base
