@@ -18,6 +18,10 @@ patches:
     target:
       kind: Core
       name: instana-core
+  - path: beeinstana-config-patch.yaml
+    target:
+      kind: Core
+      name: instana-core
 
 bases:
   - ../base
