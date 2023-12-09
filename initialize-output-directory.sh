@@ -26,6 +26,19 @@ if test ! -f $outdir/custom.env; then
   echo "# setting strong BEEINSTANA_ADMIN_PASSWORD." >> $outdir/custom.env
   echo "BEEINSTANA_ADMIN_PASSWORD=$(base64 < /dev/urandom | head -c32)" >> $outdir/custom.env
   echo "#" >> $outdir/custom.env
+
+  echo "# required instana keys." >> $outdir/custom.env
+  echo "INSTANA_DOWNLOAD_KEY=required" >> $outdir/custom.env
+  echo "INSTANA_SALES_KEY=required" >> $outdir/custom.env
+  echo "#" >> $outdir/custom.env
+
+  echo "# required instana endpoints." >> $outdir/custom.env
+  echo "INSTANA_UNIT_NAME=unit0" >> $outdir/custom.env
+  echo "INSTANA_TENANT_NAME=tenant0" >> $outdir/custom.env
+  echo "INSTANA_BASE_DOMAIN=base.domain.name" >> $outdir/custom.env
+  echo "INSTANA_TENANT_DOMAIN=unit-tenant.base.domain.name" >> $outdir/custom.env
+  echo "INSTANA_AGENT_ACCEPTOR=agents.base.domain.name" >> $outdir/custom.env
+  echo "#" >> $outdir/custom.env
 fi
 
 mkdir -p $outdir/bin
