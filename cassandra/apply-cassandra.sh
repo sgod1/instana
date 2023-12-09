@@ -8,4 +8,4 @@ customenv=`readlink -f $3`
 . $versionenv
 . $customenv
 
-oc apply -f $ENVROOT/datastores/cassandra/cassandra.datastax.com_v1beta1_cassandradatacenter_cassandra.yaml -n $CASSANDRA_NAMESPACE
+$KUBECTL apply -f $ENVROOT/datastores/cassandra/cassandra.datastax.com_v1beta1_cassandradatacenter_cassandra.yaml -n $CASSANDRA_NAMESPACE

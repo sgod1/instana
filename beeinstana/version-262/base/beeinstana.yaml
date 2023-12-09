@@ -2,9 +2,11 @@ apiVersion: beeinstana.instana.com/v1beta1
 kind: BeeInstana
 metadata:
   name: instance
-  namespace: beeinstana
 spec:
-  version: 1.1.5
+  version: 1.4.0
+  fsGroup: <GROUP_ID>
+  seccompProfile:
+    type: RuntimeDefault
   adminCredentials:
     secretName: beeinstana-admin-creds
   kafkaSettings:
@@ -37,3 +39,5 @@ spec:
         size: 2000Gi
         # Uncomment the line below to specify your own storage class.
         storageClass: <REPLACE>
+  # Should set useMultiArchImages to true for s390x and ppc64le
+  useMultiArchImages: false

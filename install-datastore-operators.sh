@@ -20,4 +20,4 @@ $GITROOT/cassandra/install-cassandra-operator.sh $defaultenv $versionenv $custom
 
 $GITROOT/clickhouse/install-clickhouse-operator.sh $defaultenv $versionenv $customenv
 
-# beeinstana/install-beeinstana-operator.sh $defaultenv $versionenv $customenv
+$GITROOT/beeinstana/install-beeinstana-operator.sh $defaultenv $versionenv $customenv

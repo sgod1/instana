@@ -29,6 +29,9 @@ $GITROOT/kustomize-builder.sh $outdir/datastores/$datastore $defaultenv $version
 datastore="clickhouse"
 $GITROOT/kustomize-builder.sh $outdir/datastores/$datastore $defaultenv $versionenv $customenv $GITROOT/$datastore $overlay
 
+datastore="beeinstana"
+$GITROOT/kustomize-builder.sh $outdir/datastores/$datastore $defaultenv $versionenv $customenv $GITROOT/$datastore $overlay
+
 # instana-operator
 $GITROOT/instana-operator/kustomize-builder.sh $outdir/instana/instana-operator $defaultenv $versionenv $customenv $GITROOT/instana-operator $overlay
 

@@ -19,3 +19,5 @@ $GITROOT/postgres/apply-postgres.sh $defaultenv $versionenv $customenv
 $GITROOT/cassandra/apply-cassandra.sh $defaultenv $versionenv $customenv
 
 $GITROOT/clickhouse/apply-clickhouse.sh $defaultenv $versionenv $customenv
+
+$GITROOT/beeinstana/apply-beeinstana.sh $defaultenv $versionenv $customenv

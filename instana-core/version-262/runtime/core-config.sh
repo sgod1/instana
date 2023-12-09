@@ -67,7 +67,7 @@ serviceProviderConfig:
 datastoreConfigs:
   beeInstanaConfig:
     user: beeinstana-user
-    password: "${BEEINSTANA_ADMIN_PASS}"
+    password: "${BEEINSTANA_ADMIN_PASSWORD}"
   clickhouseConfigs:
     - adminUser: "${CLICKHOUSE_USER}"
       adminPassword: "${CLICKHOUSE_USER_PASSWORD}"

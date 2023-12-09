@@ -22,6 +22,10 @@ if test ! -f $outdir/custom.env; then
   echo "# setting ENVROOT, do not change." >> $outdir/custom.env
   echo "ENVROOT=$envroot" >> $outdir/custom.env
   echo "#" >> $outdir/custom.env
+
+  echo "# setting strong BEEINSTANA_ADMIN_PASSWORD." >> $outdir/custom.env
+  echo "BEEINSTANA_ADMIN_PASSWORD=$(base64 < /dev/urandom | head -c32)" >> $outdir/custom.env
+  echo "#" >> $outdir/custom.env
 fi
 
 mkdir -p $outdir/bin
