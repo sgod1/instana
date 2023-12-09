@@ -10,7 +10,7 @@ customenv=`readlink -f ${3:-"./custom.env"}`
 
 # install kubectl plugin
 if test ! -f $ENVROOT/bin/kubectl-instana; then
-  ./download-kubectl-instana.sh $defaultenv $versionenv $customenv
+  $GITROOT/download-kubectl-instana.sh $defaultenv $versionenv $customenv
 fi
 
 # create instana registry pull secret yaml
