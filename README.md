@@ -1,11 +1,19 @@
 # instana
 
 #### bootstrap installation version.
-Run: `bootstrap-install-version.sh 262 ~/tmp2`
+Run: `bootstrap-install-version.sh 262 ~/tmp2`<br/>
 
-Edit `custom.env` as needed.<br/>
+Update `custom.env` with Instana keys, base domain, etc.<br/>
 
-Run: `1-update-environment.sh`<br/>
+Run: `0-install-instana-prereq.sh`<br/>
+Run: `1-update-manifests.sh`<br/>
+Run: `2-apply-namespaces.sh`<br/>
+Run: `3-install-datastore-operators.sh`<br/>
+Run: `4-apply-datastores.sh`<br/>
+Run: `5-install-instana-operator.sh`<br/>
+Run: `6-apply-instana-core.sh`<br/>
+Run: `7-apply-instana-unit.sh`<br/>
+Run: `8-create-isntana-routes.sh`<br/>
 
 
 #### todo
