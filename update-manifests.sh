@@ -8,7 +8,7 @@ customenv=`readlink -f custom.env`
 
 . $defaultenv
 . $versionenv
-if test -f $customenv; then . $customenv; fi
+. $customenv
 
 outdir=`readlink -f .`
 

@@ -12,7 +12,7 @@ overlayname=${6:-"overlay"}
 
 . $defaultenv
 . $versionenv
-if test -f $customenv; then . $customenv; fi
+. $customenv
 
 version="version-$INSTANA_VERSION"
 

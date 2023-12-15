@@ -4,9 +4,9 @@ version=$1
 basedir=$2
 
 outdir=$basedir/$version
-envroot=`readlink -f $outdir`
-
 mkdir -p $outdir
+
+envroot=`readlink -f $outdir`
 
 cp default.env $outdir
 cp $version-operator-versions.env $outdir/operator-versions.env

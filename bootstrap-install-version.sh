@@ -1,7 +1,12 @@
-#!/bin/bash -x
+#!/bin/bash
 
 version=$1
 basedir=$2
+trace=${3:-"notrace"}
+
+if test $trace = "trace"; then
+  set -x
+fi
 
 ./initialize-output-directory.sh $version $basedir
 

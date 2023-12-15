@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+patches:
+  - path: aggregator-storage-class-patch.yaml
+    target:
+      kind: BeeInstana
+      name: instance
+  - path: fsgroup-patch.yaml
+    target:
+      kind: BeeInstana
+      name: instance
+  - path: kafka-brokers-patch.yaml
+    target:
+      kind: BeeInstana
+      name: instance
+  - path: ingestor-cpu-patch.yaml
+    target:
+      kind: BeeInstana
+      name: instance
+
+resources:
+  - ../base

@@ -4,8 +4,8 @@ gitroot=$1
 outdir=${2:-"."}
 
 cp $gitroot/install-instana-prereq.sh $outdir/0-install-instana-prereq.sh
-cp $gitroot/update-manifests.sh $outdir/1-update-manifests.sh
-cp $gitroot/apply-namespaces.sh $outdir/2-apply-namespaces.sh
+cp $gitroot/apply-namespaces.sh $outdir/1-apply-namespaces.sh
+cp $gitroot/update-manifests.sh $outdir/2-update-manifests.sh
 cp $gitroot/install-datastore-operators.sh $outdir/3-install-datastore-operators.sh
 cp $gitroot/apply-datastores.sh $outdir/4-apply-datastores.sh
 cp $gitroot/install-instana-operator.sh $outdir/5-install-instana-operator.sh
