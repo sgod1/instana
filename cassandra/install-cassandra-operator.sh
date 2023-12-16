@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 defaultenv=$1
 versionenv=$2
@@ -6,10 +6,11 @@ customenv=$3
 
 . $defaultenv
 . $versionenv
+. $customenv
 
-if test -f $customenv; then . $customenv; fi
+set -x
 
-oc apply -f $ENVROOT/datastores/cassandra/security.openshift.io_v1_securitycontextconstraints_cassandra-scc.yaml
+oc apply -f $ENVROOT/datastores/cassandra/security.openshift.io_v1_securitycontextconstraints_cassandra-scc.yaml -n $CASSANDRA_NAMESPACE
 
 helm repo add k8ssandra $CASSANDRA_HELM_REPO
 helm repo update

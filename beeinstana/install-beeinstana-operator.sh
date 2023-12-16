@@ -8,6 +8,8 @@ customenv=$3
 . $versionenv
 . $customenv
 
+set -x
+
 # instana registry secret
 $KUBECTL apply -f $ENVROOT/instana/instana-registry.yaml -n $BEEINSTANA_NAMESPACE
 

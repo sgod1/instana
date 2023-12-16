@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 defaultenv=`readlink -f $1`
 versionenv=`readlink -f $2`
@@ -7,6 +7,8 @@ customenv=`readlink -f $3`
 . $defaultenv
 . $versionenv
 . $customenv
+
+set -x
 
 # apply custom scc
 oc apply -f $ENVROOT/datastores/clickhouse/security.openshift.io_v1_securitycontextconstraints_clickhouse-scc.yaml -n $CLICKHOUSE_NAMESPACE
