@@ -106,7 +106,7 @@ spec:
                 - -c
                 - --
           imagePullSecrets:
-            - name: clickhouse-image-secret
+            - name: instana-registry
           securityContext:
             fsGroup: 0
             runAsGroup: 0

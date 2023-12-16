@@ -8,7 +8,7 @@ customenv=`readlink -f ./custom.env`
 . $versionenv
 . $customenv
 
-datastores="./datastores"
+set -x
 
 $GITROOT/kafka/apply-kafka.sh $defaultenv $versionenv $customenv
 

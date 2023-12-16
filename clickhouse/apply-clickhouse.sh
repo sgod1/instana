@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 defaultenv=`readlink -f $1`
 versionenv=`readlink -f $2`
@@ -8,12 +8,10 @@ customenv=`readlink -f $3`
 . $versionenv
 . $customenv
 
-# we rely on `clickhouse-image-secret` created by external script
-#kubectl create secret docker-registry clickhouse-image-secret \
-#  --namespace=$CLICKHOUSE_NAMESPACE \
-#  --docker-username=_ \
-#  --docker-password=<AGENT_KEY> \
-#  --docker-server=artifact-public.instana.io
+set -x
+
+# image pull secret
+oc apply -f $ENVROOT/instana/instana-registry.yaml -n $CLICKHOUSE_NAMESPACE
 
 # zookeeper cluster
 oc apply -f $ENVROOT/datastores/clickhouse/zookeeper.pravega.io_v1beta1_zookeepercluster_instana-zookeeper.yaml -n $CLICKHOUSE_NAMESPACE
